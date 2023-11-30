@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    container_name: database
+    build:
+      context: . 
+      dockerfile: ./docker/db/Dockerfile
+    image: felixshift/snippetbox_db:latest
+    environment: 
+      MYSQL_ROOT_PASSWORD: snippet_root_pass
+      MYSQL_DATABASE: snippetbox
+      MYSQL_USER: web
+      MYSQL_PASSWORD: testing123
+    restart: on-failure
+  app:
+    container_name: snippetbox
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    image: felixshift/snippetbox_app:latest
+    ports: 
+      - "4000:4000"
+    depends_on:
+      - db
+    command: ./app
+    restart: on-failure
