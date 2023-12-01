@@ -13,6 +13,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: database-deployment
+  labels:
+    # Required to denote as a component in Releases
+    # https://circleci.com/docs/release/configure-your-kubernetes-components/#add-required-labels
+    app: database
+    version: 1.0.0
+  # Required to unlock UI features
+  # Additional annotations can be used to unlock more features
+  # https://circleci.com/docs/release/configure-your-kubernetes-components
+  annotations:
+    circleci.com/project-id: c81e351c-711d-41f5-a770-07ce7e6c7003
 spec:
   replicas: 1
   selector:
@@ -21,7 +31,10 @@ spec:
   template:
     metadata:
       labels:
+        # Required to denote as a component in Releases
+        # https://circleci.com/docs/release/configure-your-kubernetes-components/#add-required-labels
         app: database
+        version: 1.0.0
     spec:
       containers:
         - name: database
@@ -54,6 +67,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-deployment
+  labels:
+    # Required to denote as a component in Releases
+    # https://circleci.com/docs/release/configure-your-kubernetes-components/#add-required-labels
+    app: app
+    version: 1.0.0
+  # Required to unlock UI features
+  # Additional annotations can be used to unlock more features
+  # https://circleci.com/docs/release/configure-your-kubernetes-components
+  annotations:
+    circleci.com/project-id: c81e351c-711d-41f5-a770-07ce7e6c7003
 spec:
   replicas: 1
   selector:
@@ -62,7 +85,10 @@ spec:
   template:
     metadata:
       labels:
+        # Required to denote as a component in Releases
+        # https://circleci.com/docs/release/configure-your-kubernetes-components/#add-required-labels
         app: app
+        version: 1.0.0
     spec:
       containers:
         - name: app
