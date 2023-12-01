@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: database
-          image: felixshift/snippetbox_db:latest
+          image: felixshift/release_db:latest
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: snippet_root_pass
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: felixshift/snippetbox_app:latest
+          image: felixshift/release_app:latest
           ports:
             - containerPort: 4000
           env:
