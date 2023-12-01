@@ -10,7 +10,9 @@ workflows:
           name: Publish app
           image: felixshift/release_app
           path: docker/app/
+          tag: $CIRCLE_SHA1, latest
       - docker/publish:
           name: Publish db
           image: felixshift/release_db
           path: docker/db/
+          tag: $CIRCLE_SHA1, latest
